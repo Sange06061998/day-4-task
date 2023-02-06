@@ -1,0 +1,60 @@
+3)XMLHTTP REQUEST-API
+COUNTRIES NAME,REGION,SUBREGION,POPULATION;
+
+var request = new XMLHttpRequest();
+
+request.open("GET", "https://restcountries.com/v3.1/all")
+request.send();
+
+
+request.onload = function () {
+    var data = JSON.parse(this.responseText);
+    printData(data);
+}
+
+
+
+function printData(data) {
+    if(data.length > 0) {
+       for(let i= 0; i < data.length; i++) {
+           const { name = {}, region = '', subregion = '', population = 0 }  = data[i];
+           console.log(name.common, region, subregion, population);
+       }
+    }
+}
+
+2) COUNRIES FLAGS;
+
+var request = new XMLHttpRequest();
+
+request.open("GET", "https://restcountries.com/v3.1/all")
+request.send();
+
+
+request.onload = function () {
+    var data = JSON.parse(this.responseText);
+    printData(data);
+}
+
+
+
+function printData(data) {
+    if(data.length > 0) {
+       for(let i= 0; i < data.length; i++) {
+           const {flags={}}  = data[i];
+           console.log(flags.svg);
+       }
+    }
+}
+
+
+
+JSON COMPARISION;
+
+1)
+let obj1={name:"person 1",
+ age:5};
+ let obj2={age:5,
+ name:"person1"};
+ let result=JSON.stringify(obj1) === JSON.stringify(obj2); 
+ console.log(result);//(output;false)
